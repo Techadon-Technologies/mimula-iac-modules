@@ -4,6 +4,20 @@ variable "acl" {
   description = "The [canned ACL] conflicts with grants, nullified when grants in use"
 }
 
+variable "iswebsite" {
+  type = bool
+  default = false
+  description = "is bucket a website"
+}
+
+variable "website_configuration" {
+  type = object({
+    index_document = string
+    error_document = string
+  })
+  default = null
+  description = "website description"
+}
 variable "policy" {
   type        = string
   default     = ""
