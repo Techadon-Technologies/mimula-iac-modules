@@ -7,7 +7,7 @@ variable "acl" {
 variable "iswebsite" {
   type = bool
   default = false
-  descripti = "is bucket a website"
+  description = "is bucket a website"
 }
 
 variable "website_configuration" {
