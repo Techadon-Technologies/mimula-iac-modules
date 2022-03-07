@@ -1,5 +1,5 @@
 resource "aws_apigatewayv2_integration" "default" {
-  for_each = var.create_routes_and_integrations ? var.integrations : {}
+  for_each = var.create_routes_and_integrations == null ? var.integrations : {}
 
   api_id      = aws_apigatewayv2_api.default.id
   description = lookup(each.value, "description", null)

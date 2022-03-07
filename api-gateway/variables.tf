@@ -181,7 +181,7 @@ variable "mutual_tls_authentication" {
 variable "integrations" {
   description = "Map of API gateway routes with integrations"
   type        = map(any)
-  default     = {}
+  default     = null
 }
 
 # vpc link
