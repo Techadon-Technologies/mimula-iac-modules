@@ -4,6 +4,11 @@ variable "acl" {
   description = "The [canned ACL] conflicts with grants, nullified when grants in use"
 }
 
+variable "make_whole_bucket_public" {
+  type = bool
+  default = false
+  description = "allow bucket to be public"
+}
 variable "iswebsite" {
   type = bool
   default = false
