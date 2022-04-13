@@ -8,7 +8,7 @@ variable "tags" {
   description = "base tags required in every resource"
 }
 
-variable "api_name" {
+variable "name" {
   type = string
   description = "apigateway rest name"
 }
