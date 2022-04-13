@@ -7,7 +7,7 @@ resource "aws_apigatewayv2_api" "default" {
 
   route_selection_expression   = var.route_selection_expression
   api_key_selection_expression = var.api_key_selection_expression
-  disable_execute_api_endpoint = var.disable_execute_api_endpoint
+  # disable_execute_api_endpoint = var.disable_execute_api_endpoint
 
   /* Start of quick create */
   route_key       = var.route_key

@@ -1,5 +1,5 @@
 resource "aws_apigatewayv2_integration" "default" {
-  for_each = var.create_routes_and_integrations ? var.integrations : {}
+  for_each = var.create_routes_and_integrations == null ? var.integrations : {}
 
   api_id      = aws_apigatewayv2_api.default.id
   description = lookup(each.value, "description", null)
@@ -26,13 +26,13 @@ resource "aws_apigatewayv2_integration" "default" {
     }
   }
 
-  dynamic "response_parameters" {
-    for_each = flatten([try(jsondecode(each.value["response_parameters"]), each.value["response_parameters"], [])])
-    content {
-      status_code = response_parameters.value["status_code"]
-      mappings    = response_parameters.value["mappings"]
-    }
-  }
+  # dynamic "response_parameters" {
+  #   for_each = flatten([try(jsondecode(each.value["response_parameters"]), each.value["response_parameters"], [])])
+  #   content {
+  #     status_code = response_parameters.value["status_code"]
+  #     mappings    = response_parameters.value["mappings"]
+  #   }
+  # }
 
   lifecycle {
     create_before_destroy = true

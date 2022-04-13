@@ -9,13 +9,13 @@ resource "aws_apigatewayv2_domain_name" "default" {
     security_policy = "TLS_1_2"
   }
 
-  dynamic "mutual_tls_authentication" {
-    for_each = length(keys(var.mutual_tls_authentication)) == 0 ? [] : [var.mutual_tls_authentication]
-    content {
-      truststore_uri     = mutual_tls_authentication.value.truststore_uri
-      truststore_version = lookup(mutual_tls_authentication.value, "truststore_version", null)
-    }
-  }
+  # dynamic "mutual_tls_authentication" {
+  #   for_each = var.mutual_tls_authentication == null ? [] : [var.mutual_tls_authentication]
+  #   content {
+  #     truststore_uri     = mutual_tls_authentication.value.truststore_uri
+  #     truststore_version = lookup(mutual_tls_authentication.value, "truststore_version", null)
+  #   }
+  # }
 
   tags = merge(var.domain_name_tags, var.tags)
 }

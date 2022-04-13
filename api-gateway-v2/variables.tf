@@ -174,15 +174,14 @@ variable "domain_name_tags" {
 variable "mutual_tls_authentication" {
   description = "An Amazon S3 URL that specifies the truststore for mutual TLS authentication as well as version, keyed at uri and version"
   type        = map(string)
-  default     = {}
+  default     = null
 }
-
 ####
 # routes and integrations
 variable "integrations" {
   description = "Map of API gateway routes with integrations"
   type        = map(any)
-  default     = {}
+  default     = null
 }
 
 # vpc link
