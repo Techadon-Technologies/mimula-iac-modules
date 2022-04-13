@@ -46,6 +46,11 @@ variable "metrics_enabled" {
   default     = false
 }
 
+variable "log_group_arn" {
+  type = string
+  description = "logn group name"
+}
+
 variable "xray_tracing_enabled" {
   description = "A flag to indicate whether to enable X-Ray tracing."
   type        = bool

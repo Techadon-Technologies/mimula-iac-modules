@@ -27,12 +27,12 @@ output "arn" {
   value       = aws_api_gateway_rest_api.default.arn
 }
 
-output "invoke_url" {
-  description = "The URL to invoke the REST API"
-  value       = aws_api_gateway_stage.default.invoke_url
-}
+# output "invoke_url" {
+#   description = "The URL to invoke the REST API"
+#   value       = aws_api_gateway_stage.default.invoke_url
+# }
 
-output "stage_arn" {
-  description = "The ARN of the gateway stage"
-  value       = aws_api_gateway_stage.default.arn
-}
+# output "stage_arn" {
+#   description = "The ARN of the gateway stage"
+#   value       = aws_api_gateway_stage.default.arn
+# }
