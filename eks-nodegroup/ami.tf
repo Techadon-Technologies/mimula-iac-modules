@@ -11,19 +11,11 @@ locals {
   ami_kind = split("_", var.ami_type)[0]
 
   ami_format = {
-    # amazon-eks{arch_label}-node-{ami_kubernetes_version}-v{ami_version}
-    # e.g. amazon-eks-arm64-node-1.21-v20211013
     "AL2" : "amazon-eks%s-node-%s"
-    # bottlerocket-aws-k8s-{ami_kubernetes_version}-{arch_label}-v{ami_version}
-    # e.g. bottlerocket-aws-k8s-1.21-x86_64-v1.2.0-ccf1b754
     "BOTTLEROCKET" : "bottlerocket-aws-k8s-%s-%s-%s"
   }
 
-  # Kubernetes version priority (first one to be set wins)
-  # 1. prefix of var.ami_release_version
-  # 2. var.kubernetes_version
-  # 3. data.eks_cluster.this.kubernetes_version
-  need_cluster_kubernetes_version = local.enabled ? local.need_ami_id && length(var.kubernetes_version) == 0 : false
+  need_cluster_kubernetes_version = local.need_ami_id && length(var.kubernetes_version) == 0 ? true : false
 
   use_cluster_kubernetes_version = local.need_cluster_kubernetes_version && (local.ami_kind == "BOTTLEROCKET" || length(var.ami_release_version) == 0)
 
@@ -33,15 +25,9 @@ locals {
 
   # if ami_release_version is provided
   ami_version_regex = local.need_ami_id ? {
-    # if ami_release_version = "1.21-20211013"
-    #   insert the letter v prior to the ami_version so it becomes 1.21-v20211013
-    # if not, use the kubernetes version
     "AL2" : (length(var.ami_release_version) == 1 ?
       replace(var.ami_release_version[0], "/^(\\d+\\.\\d+)\\.\\d+-(\\d+)$/", "$1-v$2") :
     "${local.ami_kubernetes_version}-*"),
-    # if ami_release_version = "1.2.0-ccf1b754"
-    #   prefex the ami release version with the letter v
-    # if not, use an asterisk
     "BOTTLEROCKET" : (length(var.ami_release_version) == 1 ?
     format("v%s", var.ami_release_version[0]) : "*"),
   } : {}

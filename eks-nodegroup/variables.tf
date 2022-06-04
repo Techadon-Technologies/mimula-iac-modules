@@ -3,32 +3,20 @@ variable "cluster_name" {
   description = "The name of the EKS cluster"
 }
 
-variable "create_before_destroy" {
-  type        = bool
-  default     = false
-  description = <<-EOT
-    Set true in order to create the new node group before destroying the old one.
-    If false, the old node group will be destroyed first, causing downtime.
-    Changing this setting will always cause node group to be replaced.
-    EOT
+variable "tags" {
+  type = object({
+    Author      = string
+    Environment = string
+    Provisioner = string
+    Region      = string
+  })
+  description = "base tags required in every resource"
 }
 
 variable "cluster_autoscaler_enabled" {
   type        = bool
   description = "Set true to label the node group so that the [Kubernetes Cluster Autoscaler](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/aws/README.md#auto-discovery-setup) will discover and autoscale it"
   default     = false
-}
-
-variable "ec2_ssh_key_name" {
-  type        = list(string)
-  default     = []
-  description = "SSH key pair name to use to access the worker nodes"
-  validation {
-    condition = (
-      length(var.ec2_ssh_key_name) < 2
-    )
-    error_message = "You may not specify more than one `ec2_ssh_key_name`."
-  }
 }
 
 variable "ssh_access_security_group_ids" {
@@ -84,27 +72,14 @@ variable "node_role_cni_policy_enabled" {
 }
 
 variable "node_role_arn" {
-  type        = list(string)
-  default     = []
+  type        = string
   description = "If provided, assign workers the given role, which this module will not modify"
-  validation {
-    condition = (
-      length(var.node_role_arn) < 2
-    )
-    error_message = "You may not specify more than one `node_role_arn`."
-  }
 }
 
 variable "node_role_policy_arns" {
   type        = list(string)
   default     = []
   description = "List of policy ARNs to attach to the worker role this module creates in addition to the default ones"
-}
-
-variable "node_role_permissions_boundary" {
-  description = "If provided, all IAM roles will be created with this permissions boundary attached."
-  type        = string
-  default     = null
 }
 
 variable "ami_type" {
@@ -197,23 +172,6 @@ variable "kubernetes_taints" {
     `key` and `effect` are required, `value` may be null.
     EOT
   default     = []
-}
-
-variable "kubelet_additional_options" {
-  type        = list(string)
-  description = <<-EOT
-    Additional flags to pass to kubelet.
-    DO NOT include `--node-labels` or `--node-taints`,
-    use `kubernetes_labels` and `kubernetes_taints` to specify those."
-    EOT
-  default     = []
-  validation {
-    condition = (length(compact(var.kubelet_additional_options)) == 0 ? true :
-      length(regexall("--node-labels", join(" ", var.kubelet_additional_options))) == 0 &&
-      length(regexall("--node-taints", join(" ", var.kubelet_additional_options))) == 0
-    )
-    error_message = "Var kubelet_additional_options must not contain \"--node-labels\" or \"--node-taints\".  Use `kubernetes_labels` and `kubernetes_taints` to specify labels and taints."
-  }
 }
 
 variable "ami_image_id" {
