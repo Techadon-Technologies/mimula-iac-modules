@@ -34,8 +34,8 @@ output "aws_nat_gateway_count" {
 }
 
 output "aws_nat_gateway_ids" {
-  value = var.nats_enabled == true ? aws_nat_gateway.default.*.id : ""
+  value = var.nats_enabled == true ? join("", aws_nat_gateway.default.*.id) : ""
 }
 output "aws_eip_nat_ips" {
-  value = var.nats_enabled == true ? aws_eip.nat.*.public_ip : ""
+  value = var.nats_enabled == true ? join("", aws_eip.nat.*.public_ip) : ""
 }
