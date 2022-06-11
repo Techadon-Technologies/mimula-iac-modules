@@ -28,6 +28,11 @@ variable "default_sg_rules_egress" {
 }
 variable "vpc_cidr_base" {}
 variable "public_subnet_cidrs" {}
+variable "nats_enabled" {
+  default = false
+  type = bool
+  description = "nats enabled"
+}
 variable "private_subnet_cidrs" {}
 
 

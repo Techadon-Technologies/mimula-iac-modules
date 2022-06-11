@@ -32,13 +32,13 @@ resource "aws_route_table" "default_private" {
 }
 
 #nats etc
-# resource "aws_route" "private_nat_gateway" {
-#   count                  = var.az_count
-#   route_table_id         = element(aws_route_table.default_private.*.id, count.index)
-#   nat_gateway_id         = element(aws_nat_gateway.default.*.id, count.index)
-#   destination_cidr_block = "0.0.0.0/0"
-#   depends_on = [
-#     aws_route_table.default_private,
-#     aws_nat_gateway.default,
-#   ]
-# }
+resource "aws_route" "private_nat_gateway" {
+  count                  = var.nats_enabled ? var.az_count : 0
+  route_table_id         = element(aws_route_table.default_public.*.id, count.index)
+  nat_gateway_id         = element(aws_nat_gateway.default.*.id, count.index)
+  destination_cidr_block = "0.0.0.0/0"
+  depends_on = [
+    aws_route_table.default_private,
+    aws_nat_gateway.default,
+  ]
+}
