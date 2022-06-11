@@ -30,12 +30,12 @@ output "aws_private_subnets" {
 }
 
 output "aws_nat_gateway_count" {
-  value = var.nats_enabled ? length(aws_nat_gateway.default.*.id) : 0
+  value = var.nats_enabled == true ? length(aws_nat_gateway.default.*.id) : 0
 }
 
 output "aws_nat_gateway_ids" {
-  value = var.nats_enabled ? aws_nat_gateway.default.*.id : ""
+  value = var.nats_enabled == true ? aws_nat_gateway.default.*.id : ""
 }
 output "aws_eip_nat_ips" {
-  value = var.nats_enabled ? aws_eip.nat.*.public_ip : ""
+  value = var.nats_enabled == true ? aws_eip.nat.*.public_ip : ""
 }
