@@ -14,10 +14,6 @@ variable "cluster_id" {
   description = "eks cluster"
 }
 
-variable "depends" {
-  type = list(any)
-  description = "depends on"
-}
 variable "tags" {
   type = object({
     Author      = string
