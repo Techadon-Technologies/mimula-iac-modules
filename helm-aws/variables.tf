@@ -3,10 +3,6 @@ variable "tfstate_bucket" {
   description = "tf state bucket"
 }
 
-variable "tfstate_key" {
-  type = string
-  description = "tf state key"
-}
 
 variable "tfstate_key" {
   type = string
