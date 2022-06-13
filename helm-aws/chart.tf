@@ -16,8 +16,8 @@ resource "helm_release" "default" {
     value = set_list.value.value
   }
 
-  depends_on = concat([
+  depends_on = [
     data.terraform_remote_state.eks,
     data.aws_eks_cluster.cluster
-  ])
+  ]
 }
