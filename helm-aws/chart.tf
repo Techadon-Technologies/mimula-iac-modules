@@ -10,11 +10,11 @@ resource "helm_release" "default" {
   force_update    = var.resources_list[count.index].for_update
   namespace       = var.resources_list[count.index].namespace
 
-  dynamic "set" {
-    for_each = var.resources_list[count.index].set_list
-    name = set_list.value.name
-    value = set_list.value.value
-  }
+  # dynamic "set" {
+  #   for_each = var.resources_list[count.index].set_list
+  #   name = set_list.value.name
+  #   value = set_list.value.value
+  # }
 
   depends_on = [
     data.terraform_remote_state.eks,

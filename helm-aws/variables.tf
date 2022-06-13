@@ -33,9 +33,9 @@ variable "resources_list" {
     cleanup_on_fail = string
     for_update = string
     namespace = string
-    set_list = object({
-        name = string
-        value = string
-    })
+    # set_list = object({
+    #     name = string
+    #     value = string
+    # })
   }))
 }
