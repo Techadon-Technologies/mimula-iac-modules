@@ -15,4 +15,8 @@ resource "helm_release" "default" {
     name = set_list.value.name
     value = set_list.value.value
   }
+  depends_on = [
+    data.terraform_remote_state.eks,
+    data.aws_eks_cluster.cluster
+  ]
 }
