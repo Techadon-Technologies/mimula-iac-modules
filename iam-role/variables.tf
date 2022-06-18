@@ -3,9 +3,9 @@ variable "name" {
   description = "role & policy name"
 }
 
-variable "service_name" {
+variable "principal_name" {
   type = string
-  description = "service name"
+  description = "principal name"
 }
 
 variable "policies" {
@@ -30,4 +30,13 @@ variable "tags" {
     Region      = string
   })
   description = "base tags required in every resource"
+}
+variable "principal_type" {
+  type = string
+  default = "Service"
+}
+
+variable "assume_role_action" {
+  type = string
+  default = "sts:AssumeRole"
 }

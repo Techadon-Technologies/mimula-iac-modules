@@ -9,9 +9,9 @@ resource "aws_iam_role" "default" {
       "Sid": "",
       "Effect": "Allow",
       "Principal": {
-        "Service": "${var.service_name}"
+        "${var.principal_type}": "${var.principal_name}"
       },
-      "Action": "sts:AssumeRole"
+      "Action": "${var.assume_role_action}"
     }
   ]
 }
