@@ -12,8 +12,10 @@ resource "helm_release" "default" {
 
   dynamic "set" {
     for_each = var.resources_list[count.index].set_list
-    name = set.value.name
-    value = set.value.value
+    content{
+      name = set.value.name
+      value = set.value.value
+    }
   }
 
   depends_on = [
