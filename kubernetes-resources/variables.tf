@@ -31,7 +31,6 @@ variable "namespaces" {
 variable "storage_classes" {
   type = list(object({
     name = string
-    namespace = string
     provisioner = string
     reclaim_policy = string
     parameter_type = string
