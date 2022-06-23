@@ -6,4 +6,8 @@ resource "kubernetes_namespace" "default" {
     }
     name = var.namespaces[count.index].name
   }
+  depends_on = [
+    data.aws_eks_cluster.cluster,
+    data.aws_eks_node_groups.node_group
+  ]
 }

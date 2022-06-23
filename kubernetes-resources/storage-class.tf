@@ -10,4 +10,8 @@ resource "kubernetes_storage_class" "default" {
     encrypted = var.storage_classes[count.index].parameter_encrypted
   }
   mount_options = var.storage_classes[count.index].mount_options
+  depends_on = [
+    data.aws_eks_cluster.cluster,
+    data.aws_eks_node_groups.node_group
+  ]
 }
