@@ -19,7 +19,6 @@ resource "helm_release" "default" {
   }
 
   depends_on = [
-    data.terraform_remote_state.eks,
     data.aws_eks_cluster.cluster
   ]
 }

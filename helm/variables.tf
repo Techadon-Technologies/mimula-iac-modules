@@ -1,14 +1,3 @@
-variable "tfstate_bucket" {
-  type = string
-  description = "tf state bucket"
-}
-
-
-variable "tfstate_key" {
-  type = string
-  description = "tf state key"
-}
-
 variable "cluster_id" {
   type = string
   description = "eks cluster"
