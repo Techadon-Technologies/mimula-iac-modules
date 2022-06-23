@@ -4,8 +4,4 @@ resource "kubernetes_service_account" "default" {
     name = var.service_accounts[count.index].name
     namespace = var.service_accounts[count.index].namespace
   }
-  depends_on = [
-    data.aws_eks_cluster.cluster,
-    data.aws_eks_node_groups.node_group
-  ]
 }

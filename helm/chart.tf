@@ -19,7 +19,6 @@ resource "helm_release" "default" {
   }
 
   depends_on = [
-    data.aws_eks_cluster.cluster,
-    data.aws_eks_node_groups.node_group
+    data.aws_eks_cluster.cluster
   ]
 }
