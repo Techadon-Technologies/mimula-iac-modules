@@ -3,8 +3,10 @@ variable "tags" {
   type = map(any)
 }
 
-variable "db_sg_rules_egress" {}
-variable "db_sg_rules_ingress" {}
+variable "security_group_id" {
+  type = string
+  description = "sg instance falls in"
+}
 
 variable "database_identifier" {}
 

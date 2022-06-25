@@ -15,7 +15,7 @@ resource "aws_db_instance" "default" {
   storage_encrypted     = var.storage_encrypted
   kms_key_id            = var.kms_key_arn
 
-  vpc_security_group_ids = [aws_security_group.default.id]
+  vpc_security_group_ids = [var.security_group_id]
 
   db_subnet_group_name        = aws_db_subnet_group.default.name
   license_model               = var.license_model
