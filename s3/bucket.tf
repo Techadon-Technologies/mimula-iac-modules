@@ -98,14 +98,6 @@ resource "aws_s3_bucket" "default" {
     }
   }
 
-  dynamic "website" {
-    for_each = var.iswebsite == true && var.website_configuration == null ? [1] : []
-    content {
-      index_document = var.website_configuration.index_document
-      error_document = var.website_configuration.error_document
-    }
-  }
-
   dynamic "cors_rule" {
     for_each = var.cors_rule_inputs == null ? [] : var.cors_rule_inputs
 
