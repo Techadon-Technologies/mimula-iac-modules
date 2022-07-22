@@ -102,6 +102,21 @@ data "aws_iam_policy_document" "bucket_policy" {
     }
   }
 
+  dynamic "statement" {
+    for_each = length(var.additional_policies)
+
+    content {
+      effect    = statement.value.effect
+      actions   = statement.value.actions
+      resources = statement.value.resources
+
+      principals {
+        identifiers = ["*"]
+        type        = "*"
+      }
+    }
+  }
+
 }
 
 data "aws_iam_policy_document" "aggregated_policy" {

@@ -10,6 +10,16 @@ variable "iswebsite" {
   description = "is bucket a website"
 }
 
+variable "additional_policies" {
+  type = list(object({
+    effect = string
+    actions = list(string)
+    resources = list(string)
+  }))
+  description = "additional bucket policies"
+  default = []
+}
+
 variable "website_configuration" {
   type = object({
     index_document = string
