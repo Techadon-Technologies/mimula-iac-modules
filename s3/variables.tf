@@ -15,6 +15,7 @@ variable "additional_policies" {
     effect = string
     actions = list(string)
     resources = list(string)
+    principal = string
   }))
   description = "additional bucket policies"
   default = []
