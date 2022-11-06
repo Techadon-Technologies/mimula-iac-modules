@@ -20,11 +20,6 @@ variable "cluster_port" {
   description = "cluster port"
 }
 
-variable "security_groups" {
-  type = list(string)
-  description = "cache cluster security groups"
-}
-
 variable "subnets" {
   type = list(string)
   description = "cache cluster subnets"
