@@ -51,3 +51,8 @@ variable "parameter_group_name" {
   type = string
   description = "parameter group name"
 }
+
+variable "az_mode" {
+  type = string
+  default = "single-az"
+}

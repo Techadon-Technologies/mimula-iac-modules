@@ -6,4 +6,5 @@ resource "aws_elasticache_cluster" "default" {
   parameter_group_name = var.parameter_group_name
   engine_version       = var.cluster_engine_version
   port                 = var.cluster_port
+  az_mode = var.az_mode
 }
