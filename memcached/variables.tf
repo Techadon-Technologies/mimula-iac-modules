@@ -41,6 +41,11 @@ variable "cluster_node_type" {
   default = "cache.t3.micro"
 }
 
+variable "cluster_engine_version" {
+  type = string
+  description = "cluster engine version"
+}
+
 variable "num_cache_nodes" {
   type = number
   description = "cluster cache nodes"
