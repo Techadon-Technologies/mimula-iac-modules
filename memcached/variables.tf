@@ -15,6 +15,11 @@ variable "cluster_name" {
   description = "cluster name"
 }
 
+variable "cluster_port" {
+  type = number
+  description = "cluster port"
+}
+
 variable "security_groups" {
   type = list(string)
   description = "cache cluster security groups"
