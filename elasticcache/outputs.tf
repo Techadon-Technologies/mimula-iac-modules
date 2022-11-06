@@ -18,3 +18,8 @@ output "cluster_endpoint" {
   description = "cluster configuration_endpoint"
 }
 
+output "cluster_nodes" {
+  value = aws_elasticache_cluster.default.cache_nodes
+  description = "cluster cache_nodes"
+}
+
