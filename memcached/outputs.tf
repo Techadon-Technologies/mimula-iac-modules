@@ -4,7 +4,7 @@ output "cluster_subnet_groups_name" {
 }
 
 output "cluster_arn" {
-  value = aws_elasticache_cluster.default.name
+  value = aws_elasticache_cluster.default.arn
   description = "cluster arn"
 }
 
