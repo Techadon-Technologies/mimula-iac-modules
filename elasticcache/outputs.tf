@@ -17,3 +17,4 @@ output "cluster_endpoint" {
   value = aws_elasticache_cluster.default.configuration_endpoint
   description = "cluster configuration_endpoint"
 }
+
